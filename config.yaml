@@ -1,0 +1,9 @@
+database:
+  host: "db-server"
+  name: "devops_lab"
+  user: "devops"
+  password: "devops123"
+
+server:
+  port: 8080
+  log: "/var/log/devops_app.log"

@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  web-server:
+    build: ./app
+    container_name: devops_web
+    ports:
+      - "8080:80"
+      - "2222:22"
+    volumes:
+      - ./app:/var/www/html
+      - ./users.json:/var/www/html/users.json
+    depends_on:
+      - db-server
+    networks:
+      - devnet
+
+  db-server:
+    image: mysql:5.7
+    container_name: devops_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devops_lab
+      MYSQL_USER: devops
+      MYSQL_PASSWORD: devops123
+    volumes:
+      - ./db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - devnet
+
+networks:
+  devnet:
+    driver: bridge
