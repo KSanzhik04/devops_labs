@@ -9,6 +9,8 @@ services:
       - "2222:22"
     volumes:
       - ./app:/var/www/html
+      - /var/www/html/vendor
+      - ./config.yaml:/var/www/html/config.yaml
       - ./users.json:/var/www/html/users.json
     depends_on:
       - db-server
